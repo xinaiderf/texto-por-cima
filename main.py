@@ -28,7 +28,7 @@ class VideoPrompt(BaseModel):
     font_scale: float = 1.0       # Fator de escala para o tamanho da fonte
     thickness: int = 2            # Espessura do texto (usada como stroke_width)
     text_color: str = "#ffffff"   # Cor do texto em hexadecimal
-    font: str = "poppins.ttf"     # Nome (ou caminho) do arquivo da fonte TrueType (Poppins)
+    font: str = "arial.ttf"     # Nome (ou caminho) do arquivo da fonte TrueType (Poppins)
     max_chars: int = None         # Máximo de caracteres por linha
 
 @app.post("/overlay")
