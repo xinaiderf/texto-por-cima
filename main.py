@@ -28,7 +28,7 @@ class VideoPrompt(BaseModel):
     font_scale: float = 1.0       # Fator de escala para o tamanho da fonte
     thickness: int = 2            # Espessura do texto (usada como stroke_width)
     text_color: str = "#ffffff"   # Cor do texto em hexadecimal
-    font: str = "arial.ttf"     # Nome (ou caminho) do arquivo da fonte TrueType (Poppins)
+    font: str = "arial.ttf"       # Nome (ou caminho) do arquivo da fonte TrueType
     max_chars: int = None         # Máximo de caracteres por linha
 
 @app.post("/overlay")
@@ -79,7 +79,6 @@ async def overlay_text(data: VideoPrompt):
     # Configuração da fonte usando PIL (toda a parte de texto será processada pelo Pillow)
     font_size = int(data.font_scale * 20)
     try:
-        # Tente carregar a fonte Poppins (poppins.ttf)
         fonte_pil = ImageFont.truetype(data.font, font_size)
     except IOError:
         fonte_pil = ImageFont.load_default()
@@ -117,7 +116,7 @@ async def overlay_text(data: VideoPrompt):
             y = base_y + i * (line_height + line_gap)
             # Desenha o texto com stroke (contorno) para simular a espessura
             draw.text((x, y), linha, fill=color, font=fonte_pil,
-                      stroke_width=data.thickness, stroke_fill="black")
+                      stroke_width=data.thickness, stroke_fill="Black")
         
         # Converte a imagem PIL de volta para o formato BGR do OpenCV
         frame_bgr = cv2.cvtColor(np.array(image_pil), cv2.COLOR_RGB2BGR)
